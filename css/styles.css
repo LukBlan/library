@@ -1,0 +1,31 @@
+*,*::after, *::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #141414;
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: min-content 8fr 1fr;
+}
+
+nav {
+  background-color: #EEF0F2;
+  padding: 10px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.new-book-button {
+  color: black;
+  background-color: #EEF0F2;
+  cursor: pointer;
+  margin: 10px;
+  padding: 14px 18px;
+  justify-self: end;
+  align-self: end;
+  border: none;
+  border-radius: 100px;
+}
