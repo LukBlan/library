@@ -70,7 +70,46 @@ form > div {
 
 .flex-row {
   display: flex;
+  align-items: center;
   flex-direction: row;
   justify-content: flex-start;
   gap: 20px;
+}
+
+input[type='checkbox'] {
+  cursor: pointer;
+  background-color: #FE4A49;
+  border: 1px solid black;
+  border-radius: 25px;
+  position: relative;
+  width: 30px;
+  height: 15px;
+  appearance: none;
+  transition: 0.1s;
+}
+
+input[type='checkbox']:checked {
+  background-color: green;
+  transition: 0.1s;
+}
+
+input[type='checkbox']::before {
+  position: absolute;
+  top: 15%;
+  left: 2%;
+  content: "";
+  background-color: black;
+  width: 10px;
+  height: 10px;
+  border-radius: 25px;
+  transition: 0.1s;
+}
+
+input[type='checkbox']:checked::before {
+  position: absolute;
+  top: 15%;
+  left: 60%;
+  content: "";
+  background-color: black;
+  transition: 0.1s;
 }
