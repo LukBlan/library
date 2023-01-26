@@ -79,7 +79,7 @@ form > div {
 input[type='checkbox'] {
   cursor: pointer;
   background-color: #FE4A49;
-  border: 1px solid black;
+  border: 1px solid var(--second-color);
   border-radius: 25px;
   position: relative;
   width: 30px;
@@ -98,7 +98,7 @@ input[type='checkbox']::before {
   top: 15%;
   left: 2%;
   content: "";
-  background-color: black;
+  background-color: var(--second-color);
   width: 10px;
   height: 10px;
   border-radius: 25px;
@@ -106,10 +106,7 @@ input[type='checkbox']::before {
 }
 
 input[type='checkbox']:checked::before {
-  position: absolute;
-  top: 15%;
   left: 60%;
   content: "";
-  background-color: black;
   transition: 0.1s;
 }
