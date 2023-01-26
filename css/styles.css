@@ -110,3 +110,17 @@ input[type='checkbox']:checked::before {
   content: "";
   transition: 0.1s;
 }
+
+span {
+  position: relative;
+}
+
+
+input:invalid + span::before {
+  color: red;
+  font-size: 0.7rem;
+  position: absolute;
+  content: "This Field is required";
+  top: 10%;
+  left: 1%;
+}
