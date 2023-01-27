@@ -1,5 +1,5 @@
 :root {
-  --bg-color: #EEF0F2;
+  --bg-color: white;
   --second-color: #141414
 }
 
@@ -19,15 +19,22 @@ body {
 nav {
   background-color: var(--second-color);
   color: var(--bg-color);
-  padding: 10px;
+  padding: 30px;
   display: flex;
   justify-content: flex-start;
+  box-shadow: 0 2px 5px rgb(0 0 0 / 60%);
 }
 
 h2 {
+  font-family: sans-serif;
   color: var(--bg-color);
   background-color: var(--second-color);
   padding: 10px;
+}
+
+h3 {
+  background-color: white;
+  color: black;
 }
 
 button {
@@ -44,27 +51,32 @@ button {
   justify-self: end;
   align-self: end;
   border-radius: 100px;
+  box-shadow: 0 0 5px black;
 }
 
 .add-book-button {
-  padding: 8px 16px;
+  align-self: center;
+  padding: 8px 28px;
 }
 
 form {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
   font-weight: bold;
   text-align: center;
   background-color: white;
   position: absolute;
   top: 35%;
   left: 45%;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 0 5px rgb(0 0 0 / 35%);
 }
 
 form > div {
   display: flex;
   flex-direction: column;
   text-align: left;
-  padding: 10px;
+  padding: 5px 20px;
   text-transform: capitalize;
 }
 
@@ -111,10 +123,14 @@ input[type='checkbox']:checked::before {
   transition: 0.1s;
 }
 
+input[type='text'],
+input[type='tel'] {
+  padding: 7px;
+}
+
 span {
   position: relative;
 }
-
 
 input:invalid + span::before {
   color: red;
@@ -123,4 +139,23 @@ input:invalid + span::before {
   content: "This Field is required";
   top: 10%;
   left: 1%;
+}
+
+ul {
+  text-align: center;
+  list-style: none;
+  padding: 10px;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+}
+
+ul > li {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background-color: var(--bg-color);
+  color: var(--second-color);
+  padding: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.35);
 }
