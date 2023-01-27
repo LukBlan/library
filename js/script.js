@@ -10,7 +10,32 @@ function Book(name, author, pages, read) {
 showFormOnScreen()
 
 function addBookToLibrary(newBook) {
+  const bookComponent = generateNewBook(newBook);
+  displayBookOnScreen(bookComponent)
   myLibrary.push(newBook);
+}
+
+function generateNewBook(newBook) {
+  const bookCard = document.createElement("li");
+  const bookName = document.createElement("h3");
+  const author = document.createElement("p");
+  const pages = document.createElement("p");
+  const readToggle = document.createElement("input")
+  readToggle.type="checkBox"
+
+  bookName.innerText = newBook.name
+  author.innerText = newBook.author
+  pages.innerText = newBook.pages
+
+  bookCard.append(bookName);
+  bookCard.append(author)
+  bookCard.append(pages)
+  return bookCard;
+}
+
+function displayBookOnScreen(bookComponent) {
+  const booksList = document.querySelector("ul");
+  booksList.append(bookComponent)
 }
 
 function showFormOnScreen() {
@@ -28,7 +53,7 @@ function displayInputOnScreen() {
 function formConstructor() {
   const form = document.createElement("form");
   const boxHeader = document.createElement("h2");
-  const inputBoxName = generateInputBox("name", "text");
+  const inputBoxName = generateInputBox("title", "text");
   const inputBoxAuthor = generateInputBox("author", "text");
   const inputBoxPages = generateInputBox("pages", "tel");
   const inputReadCheckbox = generateInputBox("read", "checkbox");
@@ -41,8 +66,8 @@ function formConstructor() {
   submitButton.classList.add("add-book-button")
   inputReadCheckbox.classList.add("flex-row")
   form.append(boxHeader);
-  form.append(inputBoxAuthor);
   form.append(inputBoxName);
+  form.append(inputBoxAuthor);
   form.append(inputBoxPages);
   form.append(inputReadCheckbox);
   form.append(submitButton);
@@ -68,7 +93,7 @@ function generateInputBox(id, type) {
 function createNewBook(event) {
   event.preventDefault()
   const authorInput = document.getElementById("author");
-  const nameInput = document.getElementById("name");
+  const nameInput = document.getElementById("title");
   const pagesInput = document.getElementById("pages");
   const isChecked = document.getElementById("read").checked;
   const pagesNumber = pagesInput.value;
