@@ -18,24 +18,32 @@ function addBookToLibrary(newBook) {
 function generateNewBook(newBook) {
   const bookCard = document.createElement("li");
   const bookName = document.createElement("h3");
+  const redCross = document.createElement("span");
   const author = document.createElement("p");
   const pages = document.createElement("p");
-  const readToggle = document.createElement("input")
-  readToggle.type="checkBox"
+  const readToggle = document.createElement("input");
 
-  bookName.innerText = newBook.name
-  author.innerText = newBook.author
-  pages.innerText = newBook.pages
+  redCross.classList.add("card-cross")
+  readToggle.type="checkBox";
+  readToggle.classList.add("card-checkbox")
+
+  redCross.innerText = "x"
+  bookCard.classList.add("card");
+  bookName.innerText = newBook.name;
+  author.innerText = newBook.author;
+  pages.innerText = newBook.pages;
 
   bookCard.append(bookName);
-  bookCard.append(author)
-  bookCard.append(pages)
+  bookCard.append(author);
+  bookCard.append(pages);
+  bookCard.append(redCross);
+  bookCard.append(readToggle);
   return bookCard;
 }
 
 function displayBookOnScreen(bookComponent) {
   const booksList = document.querySelector("ul");
-  booksList.append(bookComponent)
+  booksList.append(bookComponent);
 }
 
 function showFormOnScreen() {
@@ -46,7 +54,7 @@ function showFormOnScreen() {
 function displayInputOnScreen() {
   const form = formConstructor();
   const newBookButton = document.querySelector(".create-book-button");
-  document.body.append(form)
+  document.body.append(form);
   newBookButton.removeEventListener("click", displayInputOnScreen);
 }
 
@@ -58,13 +66,13 @@ function formConstructor() {
   const inputBoxPages = generateInputBox("pages", "tel");
   const inputReadCheckbox = generateInputBox("read", "checkbox");
   const submitButton = document.createElement("button");
-  submitButton.addEventListener("click", createNewBook)
+  submitButton.addEventListener("click", createNewBook);
 
   boxHeader.textContent = "New Book";
-  submitButton.type = "submit"
-  submitButton.textContent = "Add"
-  submitButton.classList.add("add-book-button")
-  inputReadCheckbox.classList.add("flex-row")
+  submitButton.type = "submit";
+  submitButton.textContent = "Add";
+  submitButton.classList.add("add-book-button");
+  inputReadCheckbox.classList.add("flex-row");
   form.append(boxHeader);
   form.append(inputBoxName);
   form.append(inputBoxAuthor);
@@ -105,7 +113,7 @@ function createNewBook(event) {
     nameInput.setCustomValidity((bookName === "")? "Invalid field." : "");
     pagesInput.setCustomValidity((pagesNumber === "")? "Invalid field." : "");
   } else {
-    addBookToLibrary(new Book(authorName, bookName, pagesNumber, isChecked))
+    addBookToLibrary(new Book(bookName, authorName, pagesNumber, isChecked))
     removeFormFromScreen()
   }
 }

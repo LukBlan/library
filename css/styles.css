@@ -88,7 +88,7 @@ form > div {
   gap: 20px;
 }
 
-input[type='checkbox'] {
+form input[type="checkbox"] {
   cursor: pointer;
   background-color: #FE4A49;
   border: 1px solid var(--second-color);
@@ -100,12 +100,12 @@ input[type='checkbox'] {
   transition: 0.1s;
 }
 
-input[type='checkbox']:checked {
+form input[type="checkbox"]:checked {
   background-color: green;
   transition: 0.1s;
 }
 
-input[type='checkbox']::before {
+form input[type="checkbox"]::before {
   position: absolute;
   top: 15%;
   left: 2%;
@@ -117,7 +117,7 @@ input[type='checkbox']::before {
   transition: 0.1s;
 }
 
-input[type='checkbox']:checked::before {
+form input[type="checkbox"]:checked::before {
   left: 60%;
   content: "";
   transition: 0.1s;
@@ -141,21 +141,49 @@ input:invalid + span::before {
   left: 1%;
 }
 
-ul {
+.card-list {
   text-align: center;
   list-style: none;
   padding: 10px;
   display: grid;
-  gap: 10px;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 30px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-rows: repeat(auto-fill, minmax(200px, 1fr));
 }
 
-ul > li {
+.card {
   display: flex;
+  position: relative;
   flex-direction: column;
-  gap: 5px;
+  gap: 15px;
   background-color: var(--bg-color);
   color: var(--second-color);
-  padding: 10px;
+  padding: 30px 10px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.35);
+  justify-content: space-around;
+}
+
+.card-cross {
+  cursor: pointer;
+  border: 1px black solid;
+  position: absolute;
+  color: white;
+  background-color: red;
+  padding: 5px 10px;
+  top: 0;
+  right: 0;
+}
+
+.card * {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card-checkbox {
+  align-self: center;
+  appearance: none;
+  border: 1px solid black;
+  width: 10px;
+  height: 10px;
 }
