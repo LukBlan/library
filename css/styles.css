@@ -70,6 +70,9 @@ form {
   top: 35%;
   left: 45%;
   box-shadow: 0 0 5px rgb(0 0 0 / 35%);
+  transform: scale(0);
+  transition: 0.5s;
+  z-index: 1;
 }
 
 form > div {
@@ -107,12 +110,12 @@ form input[type="checkbox"]:checked {
 
 form input[type="checkbox"]::before {
   position: absolute;
-  top: 15%;
-  left: 2%;
+  top: 0;
+  left: 0;
   content: "";
   background-color: var(--second-color);
-  width: 10px;
-  height: 10px;
+  width: 13px;
+  height: 13px;
   border-radius: 25px;
   transition: 0.1s;
 }
@@ -161,6 +164,8 @@ input:invalid + span::before {
   padding: 30px 10px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.35);
   justify-content: space-around;
+  transform: scale(0);
+  transition: 0.5s;
 }
 
 .card-cross {
@@ -186,4 +191,9 @@ input:invalid + span::before {
   border: 1px solid black;
   width: 10px;
   height: 10px;
+}
+
+.show-box {
+  transition: 0.5s;
+  transform: scale(1);
 }
