@@ -1,3 +1,61 @@
+class BuilderBookCard {
+  constructor(book) {
+    this.book = book;
+    this.cardBox = document.createElement("li");
+    this.cardBox.classList.add("card");
+  }
+
+  setTitle() {
+    const bookTitle = document.createElement("h3");
+    bookTitle.innerText = this.book.name;
+    bookTitle.classList.add("title");
+    this.cardBox.append(bookTitle);
+    return this;
+  }
+
+  setDeleteButton() {
+    const deleteButton = document.createElement("span");
+    deleteButton.classList.add("card-cross");
+    deleteButton.innerText = "x";
+    deleteButton.addEventListener("click", removeCardFromLibrary)
+    this.cardBox.append(deleteButton);
+    return this;
+  }
+
+  setAuthor() {
+    const author = document.createElement("p");
+    author.innerText = this.book.author;
+    author.classList.add("author");
+    this.cardBox.append(author);
+    return this;
+  }
+
+  setPages() {
+    const pages = document.createElement("p");
+    pages.innerText = this.book.pages;
+    pages.classList.add("pages");
+    this.cardBox.append(pages);
+    return this;
+  }
+
+  setToggle() {
+    const readToggle = document.createElement("input")
+    readToggle.type="checkBox";
+    readToggle.classList.add("card-checkbox")
+    this.cardBox.append(readToggle);
+    return this;
+  }
+
+  build() {
+    this.setTitle()
+      .setAuthor()
+      .setPages()
+      .setToggle()
+      .setDeleteButton();
+    return this.cardBox
+  }
+}
+
 let form = {
   inputTitle: document.getElementById("title"),
   inputAuthor: document.getElementById("author"),
@@ -43,45 +101,12 @@ showFormOnScreen()
 createBookInFormSubmit()
 
 function addBookToLibrary(newBook) {
-  const bookComponent = generateNewBook(newBook);
+  const bookComponent = new BuilderBookCard(newBook).build();
   displayBookOnScreen(bookComponent)
   myLibrary.push(newBook);
 }
 
-function generateNewBook(newBook) {
-  const bookCard = document.createElement("li");
-  const bookName = document.createElement("h3");
-  const author = document.createElement("p");
-  const pages = document.createElement("p");
-  const readToggle = document.createElement("input");
-  const redDeleteButton = generateDeleteButtonOnCard()
-
-  readToggle.type="checkBox";
-  readToggle.classList.add("card-checkbox")
-
-  bookCard.classList.add("card");
-  bookName.innerText = newBook.name;
-  author.innerText = newBook.author;
-  pages.innerText = newBook.pages;
-
-  bookCard.append(bookName);
-  bookCard.append(author);
-  bookCard.append(pages);
-  bookCard.append(redDeleteButton);
-  bookCard.append(readToggle);
-  return bookCard;
-}
-
-function generateDeleteButtonOnCard() {
-  const deleteButton = document.createElement("span");
-  deleteButton.classList.add("card-cross");
-  deleteButton.innerText = "x";
-  deleteButton.addEventListener("click", removeCardFromLibrary)
-  return deleteButton;
-}
-
 function removeCardFromLibrary(event) {
-
   event.target.parentElement.classList.remove("show-box");
   setTimeout(() => {
     event.target.parentElement.parentElement.removeChild(event.target.parentElement)
