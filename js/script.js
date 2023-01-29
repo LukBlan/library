@@ -131,6 +131,7 @@ class FormBuilder {
     const button = new CloseButtonSvgFactory().createSvg();
     button.addEventListener("click", (event) => {
       removeParentContainer(event);
+      toggleRotation();
       showFormOnScreen();
     });
     return button;
@@ -236,14 +237,15 @@ function showFormOnScreen() {
   newBookButton.addEventListener("click", displayFormOnScreen);
 }
 
-function displayFormOnScreen() {
+function displayFormOnScreen(event) {
   const form = new FormBuilder().build();
-  const newBookButton = document.querySelector(".display-form-button");
+  const displayFormButton = event.target;
+  toggleRotation();
   document.body.append(form);
   setTimeout(() => {
     form.classList.add("show-box");
   }, 1)
-  newBookButton.removeEventListener("click", displayFormOnScreen);
+  displayFormButton.removeEventListener("click", displayFormOnScreen);
 }
 
 function createBookInFormSubmit(event) {
@@ -254,6 +256,7 @@ function createBookInFormSubmit(event) {
     const newBook = form.createNewBook();
     addBookToLibrary(newBook);
     removeParentContainer(event);
+    toggleRotation();
     showFormOnScreen();
   }
 }
@@ -274,3 +277,12 @@ function removeParentContainer(event) {
 }
 
 showFormOnScreen();
+
+function toggleRotation() {
+  const displayFormButton = document.querySelector(".display-form-button");
+  if (displayFormButton.classList.value.includes("rotate")) {
+    displayFormButton.classList.remove("rotate");
+  } else {
+    displayFormButton.classList.add("rotate");
+  }
+}

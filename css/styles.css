@@ -47,7 +47,7 @@ body {
   background-color: var(--primary-color);
   min-height: 100vh;
   display: grid;
-  grid-template-rows: min-content 8fr 1fr;
+  grid-template-rows: min-content 8fr;
 }
 
 nav {
@@ -91,11 +91,20 @@ button {
 }
 
 .display-form-button {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  font-size: 1rem;
   padding: 14px 18px;
   justify-self: end;
   align-self: end;
   border-radius: 100px;
-  box-shadow: 0 0 5px var(--secondary-color);
+  box-shadow: var(--box-shadow);
+  transition: 1s;
+}
+
+.rotate {
+  transform: scale(1.1) rotate(225deg);
 }
 
 .add-book-button {
