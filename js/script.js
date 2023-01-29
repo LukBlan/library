@@ -14,9 +14,7 @@ class BookCardBuilder {
   }
 
   setDeleteButton() {
-    const deleteButton = document.createElement("span");
-    deleteButton.classList.add("delete-card-button");
-    deleteButton.innerText = "Remove";
+    const deleteButton = new CloseButtonSvgFactory().createSvg();
     deleteButton.addEventListener("click", removeCardFromLibrary)
     this.cardBox.append(deleteButton);
     return this;
@@ -55,6 +53,33 @@ class BookCardBuilder {
       .setToggle()
       .setDeleteButton();
     return this.cardBox
+  }
+}
+
+class CloseButtonSvgFactory {
+  constructor() {
+  }
+
+  getSvg() {
+    const iconSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    iconSvg.classList.add("close-button");
+    iconSvg.setAttribute("viewBox", "0 0 24 24");
+    return iconSvg;
+  }
+
+  getPath() {
+    const iconPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    iconPath.setAttribute("d",
+      "M20 6.91L17.09 4L12 9.09L6.91 4L4 6.91L9.09 12L4 " +
+      "17.09L6.91 20L12 14.91L17.09 20L20 17.09L14.91 12L20 6.91Z"
+    );
+    return iconPath;
+  }
+
+  createSvg() {
+    const svg = this.getSvg();
+    svg.append(this.getPath());
+    return svg;
   }
 }
 
@@ -102,6 +127,15 @@ class FormBuilder {
     return button;
   }
 
+  getCloseFormButton() {
+    const button = new CloseButtonSvgFactory().createSvg();
+    button.addEventListener("click", (event) => {
+      removeParentContainer(event);
+      showFormOnScreen();
+    });
+    return button;
+  }
+
   build() {
     const inputTitleBox = this.getInput("Title", "text");
     const inputAuthorBox = this.getInput("Author", "text")
@@ -118,6 +152,7 @@ class FormBuilder {
     this.form.append(inputPagesBox);
     this.form.append(inputRead);
     this.form.append(this.getAddButton());
+    this.form.append(this.getCloseFormButton())
     return this.form;
   }
 }
@@ -146,12 +181,6 @@ let form = {
       this.inputRead.checked
     );
   },
-
-  resetInputValues: function () {
-    this.inputTitle.value = "";
-    this.inputAuthor.value = "";
-    this.inputPages.value = "";
-  }
 }
 
 let myLibrary = [];
@@ -174,15 +203,12 @@ function addBookToLibrary(newBook) {
 }
 
 function removeCardFromLibrary(event) {
-  event.target.parentElement.classList.remove("show-box");
   removeBookFromList(event)
-  setTimeout(() => {
-    event.target.parentElement.parentElement.removeChild(event.target.parentElement)
-  }, 500);
+  removeParentContainer(event);
 }
 
 function removeBookFromList(event) {
-  const bookCard = event.target.parentElement
+  const bookCard = event.currentTarget.parentElement
   const bookPosition = getPositionInLibrary(bookCard);
   myLibrary.splice(bookPosition, 1);
 }
@@ -220,15 +246,6 @@ function displayFormOnScreen() {
   newBookButton.removeEventListener("click", displayFormOnScreen);
 }
 
-function removeFormFromScreen() {
-  const form = document.querySelector("form");
-  form.classList.remove("show-box");
-  setTimeout(() => {
-    form.parentElement.removeChild(form);
-  }, 500);
-  showFormOnScreen();
-}
-
 function createBookInFormSubmit(event) {
   event.preventDefault();
   if (form.checkInputsValidity()) {
@@ -236,8 +253,8 @@ function createBookInFormSubmit(event) {
   } else {
     const newBook = form.createNewBook();
     addBookToLibrary(newBook);
-    removeFormFromScreen();
-    form.resetInputValues();
+    removeParentContainer(event);
+    showFormOnScreen();
   }
 }
 
@@ -246,6 +263,14 @@ function toggleReadStatusOnBookCard(event) {
   const bookPositionInLibrary = getPositionInLibrary(bookCard);
   const book = myLibrary[bookPositionInLibrary];
   book.toggleReadStatus();
+}
+
+function removeParentContainer(event) {
+  const parentContainer = event.currentTarget.parentElement;
+  parentContainer.classList.remove("show-box");
+  setTimeout(() => {
+    parentContainer.parentElement.removeChild(parentContainer)
+  }, 500);
 }
 
 showFormOnScreen();
