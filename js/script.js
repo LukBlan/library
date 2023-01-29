@@ -15,8 +15,8 @@ class BookCardBuilder {
 
   setDeleteButton() {
     const deleteButton = document.createElement("span");
-    deleteButton.classList.add("card-cross");
-    deleteButton.innerText = "x";
+    deleteButton.classList.add("delete-button");
+    deleteButton.innerText = "Remove";
     deleteButton.addEventListener("click", removeCardFromLibrary)
     this.cardBox.append(deleteButton);
     return this;

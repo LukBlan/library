@@ -33,8 +33,9 @@ h2 {
 }
 
 h3 {
-  background-color: white;
-  color: black;
+  background-color: black;
+  color: white;
+  padding: 10px;
 }
 
 button {
@@ -155,28 +156,28 @@ input:invalid + span::before {
 }
 
 .card {
-  display: flex;
+  font-weight: bold;
+  display: grid;
   position: relative;
-  flex-direction: column;
   gap: 15px;
   background-color: var(--bg-color);
   color: var(--second-color);
-  padding: 30px 10px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.35);
-  justify-content: space-around;
+  padding: 0 0 0 0;
+  box-shadow: 0 0 5px rgb(0 0 0 / 35%);
   transform: scale(0);
+  grid-template-rows: min-content 1fr 1fr 1fr;
   transition: 0.5s;
 }
 
-.card-cross {
+
+.delete-button {
   cursor: pointer;
-  border: 1px black solid;
-  position: absolute;
+  font-weight: bold;
   color: white;
   background-color: red;
   padding: 5px 10px;
-  top: 0;
-  right: 0;
+  justify-self: center;
+  margin: 10px;
 }
 
 .card * {
@@ -186,7 +187,7 @@ input:invalid + span::before {
 }
 
 .card-checkbox {
-  align-self: center;
+  justify-self: center;
   appearance: none;
   border: 1px solid black;
   width: 10px;
