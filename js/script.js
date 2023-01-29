@@ -15,7 +15,7 @@ class BookCardBuilder {
 
   setDeleteButton() {
     const deleteButton = document.createElement("span");
-    deleteButton.classList.add("delete-button");
+    deleteButton.classList.add("delete-card-button");
     deleteButton.innerText = "Remove";
     deleteButton.addEventListener("click", removeCardFromLibrary)
     this.cardBox.append(deleteButton);
@@ -200,13 +200,13 @@ function displayBookOnScreen(bookComponent) {
 }
 
 function showFormOnScreen() {
-  const newBookButton = document.querySelector(".create-book-button");
+  const newBookButton = document.querySelector(".display-form-button");
   newBookButton.addEventListener("click", displayFormOnScreen);
 }
 
 function displayFormOnScreen() {
   const form = new FormBuilder().build();
-  const newBookButton = document.querySelector(".create-book-button");
+  const newBookButton = document.querySelector(".display-form-button");
   document.body.append(form);
   setTimeout(() => {
     form.classList.add("show-box");
