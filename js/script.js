@@ -7,7 +7,7 @@ class BookCardBuilder {
 
   setTitle() {
     const bookTitle = document.createElement("h3");
-    bookTitle.innerText = this.book.name;
+    bookTitle.innerText = this.book.title;
     bookTitle.classList.add("title");
     this.cardBox.append(bookTitle);
     return this;
@@ -154,8 +154,8 @@ let form = {
 
 let myLibrary = [];
 
-function Book(name, author, pages, read) {
-  this.name = name;
+function Book(title, author, pages, read) {
+  this.title = title;
   this.author = author;
   this.pages = pages;
   this.read = read;
@@ -169,9 +169,26 @@ function addBookToLibrary(newBook) {
 
 function removeCardFromLibrary(event) {
   event.target.parentElement.classList.remove("show-box");
+  removeBookFromList(event)
   setTimeout(() => {
     event.target.parentElement.parentElement.removeChild(event.target.parentElement)
   }, 500);
+}
+
+function removeBookFromList(event) {
+  const bookCard = event.target.parentElement
+  const bookTitle = bookCard.querySelector(".title").textContent;
+  const bookAuthor = bookCard.querySelector(".author").textContent
+  const bookPage = bookCard.querySelector(".pages").textContent
+  const bookPosition = getPositionInLibrary(bookTitle, bookAuthor, bookPage);
+  myLibrary.splice(bookPosition, 1);
+}
+
+function getPositionInLibrary(bookTitle, bookAuthor, bookPage) {
+  const bookFromLibrary =  myLibrary.filter(
+    book => bookTitle === book.title && bookAuthor === book.author && bookPage === book.pages
+  )[0];
+  return myLibrary.indexOf(bookFromLibrary);
 }
 
 function displayBookOnScreen(bookComponent) {
