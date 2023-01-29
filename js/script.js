@@ -1,4 +1,4 @@
-class BuilderBookCard {
+class BookCardBuilder {
   constructor(book) {
     this.book = book;
     this.cardBox = document.createElement("li");
@@ -56,11 +56,75 @@ class BuilderBookCard {
   }
 }
 
+class FormBuilder {
+  constructor() {
+    this.form = document.createElement("form");
+  }
+
+  getHeader() {
+    const h2 = document.createElement("h2");
+    h2.innerText = "New Book";
+    return h2;
+  }
+
+  getInput(name, type) {
+    const inputContainer = document.createElement("div");
+    const label = document.createElement("label");
+    const input = document.createElement("input");
+    const span = document.createElement("span");
+    const id = name.toLowerCase();
+    label.innerText = name;
+    label.setAttribute("for", id);
+    input.id = id;
+    input.type = type;
+    inputContainer.append(label);
+    inputContainer.append(input);
+    inputContainer.append(span);
+    return inputContainer;
+  }
+
+  getCheckbox() {
+    const inputCheckbox = this.getInput("Read", "checkbox");
+    const span = inputCheckbox.querySelector("span");
+    inputCheckbox.removeChild(span)
+    inputCheckbox.classList.add("flex-row")
+    return inputCheckbox;
+  }
+
+  getAddButton() {
+    const button = document.createElement("button");
+    button.innerText = "Add";
+    button.classList.add("add-book-button");
+    button.type = "button";
+    button.addEventListener("click", createBookInFormSubmit);
+    return button;
+  }
+
+  build() {
+    const inputTitleBox = this.getInput("Title", "text");
+    const inputAuthorBox = this.getInput("Author", "text")
+    const inputPagesBox = this.getInput("Pages", "text");
+    const inputRead = this.getCheckbox();
+    form.inputTitle = inputTitleBox.querySelector("input");
+    form.inputAuthor = inputAuthorBox.querySelector("input");
+    form.inputPages = inputPagesBox.querySelector("input");
+    form.inputRead = inputRead.querySelector("input");
+
+    this.form.append(this.getHeader());
+    this.form.append(inputTitleBox);
+    this.form.append(inputAuthorBox);
+    this.form.append(inputPagesBox);
+    this.form.append(inputRead);
+    this.form.append(this.getAddButton());
+    return this.form;
+  }
+}
+
 let form = {
-  inputTitle: document.getElementById("title"),
-  inputAuthor: document.getElementById("author"),
-  inputPages: document.getElementById("pages"),
-  inputRead: document.getElementById("read"),
+  inputTitle: null,
+  inputAuthor: null,
+  inputPages: null,
+  inputRead: null,
 
   checkInputsValidity: function () {
     return form.inputTitle.value === "" || form.inputAuthor.value === ""  || form.inputPages.value === "";
@@ -97,12 +161,9 @@ function Book(name, author, pages, read) {
   this.read = read;
 }
 
-showFormOnScreen()
-createBookInFormSubmit()
-
 function addBookToLibrary(newBook) {
-  const bookComponent = new BuilderBookCard(newBook).build();
-  displayBookOnScreen(bookComponent)
+  const bookComponent = new BookCardBuilder(newBook).build();
+  displayBookOnScreen(bookComponent);
   myLibrary.push(newBook);
 }
 
@@ -110,7 +171,7 @@ function removeCardFromLibrary(event) {
   event.target.parentElement.classList.remove("show-box");
   setTimeout(() => {
     event.target.parentElement.parentElement.removeChild(event.target.parentElement)
-  }, 500)
+  }, 500);
 }
 
 function displayBookOnScreen(bookComponent) {
@@ -118,7 +179,7 @@ function displayBookOnScreen(bookComponent) {
   booksList.append(bookComponent);
   setTimeout(() => {
     bookComponent.classList.add("show-box");
-  }, 1)
+  }, 1);
 }
 
 function showFormOnScreen() {
@@ -127,29 +188,34 @@ function showFormOnScreen() {
 }
 
 function displayFormOnScreen() {
-  const form = document.querySelector("form");
+  const form = new FormBuilder().build();
   const newBookButton = document.querySelector(".create-book-button");
-  form.classList.add("show-box");
+  document.body.append(form);
+  setTimeout(() => {
+    form.classList.add("show-box");
+  }, 1)
   newBookButton.removeEventListener("click", displayFormOnScreen);
 }
 
 function removeFormFromScreen() {
   const form = document.querySelector("form");
   form.classList.remove("show-box");
+  setTimeout(() => {
+    form.parentElement.removeChild(form);
+  }, 500);
   showFormOnScreen();
 }
 
-function createBookInFormSubmit() {
-  const addBookButton = document.querySelector(".add-book-button");
-  addBookButton.addEventListener("click", (event) => {
-    event.preventDefault();
-    if (form.checkInputsValidity()) {
-      form.setInputsValidations()
-    } else {
-      const newBook = form.createNewBook();
-      addBookToLibrary(newBook);
-      removeFormFromScreen();
-      form.resetInputValues()
-    }
-  })
+function createBookInFormSubmit(event) {
+  event.preventDefault();
+  if (form.checkInputsValidity()) {
+    form.setInputsValidations();
+  } else {
+    const newBook = form.createNewBook();
+    addBookToLibrary(newBook);
+    removeFormFromScreen();
+    form.resetInputValues();
+  }
 }
+
+showFormOnScreen();
