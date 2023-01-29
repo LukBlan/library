@@ -265,23 +265,23 @@ span {
   border: none;
 }
 
+.card-checkbox:checked::after {
+  top: 0;
+  left: 41px;
+  background-color: green;
+  border: 1px solid black;
+  box-shadow: 0 5px 0 0 #013f01;
+  transform: scale(0.94);
+}
 .card-checkbox::after {
   position: absolute;
-  top: 2px;
+  top: 3px;
   left: 42px;
-  padding: 4px 4px;
+  padding: 3px 2px;
   content: "Read";
   transition: 0.1s;
   background-color: lightslategray;
   border-radius: 25px;
   line-height: 2;
   font-size: 0.75rem;
-}
-
-.card-checkbox:checked::after {
-  top: -1px;
-  left: 41px;
-  background-color: green;
-  border: 1px solid black;
-  box-shadow: 0 5px 0 0 #013f01;
 }
