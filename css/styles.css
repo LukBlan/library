@@ -3,8 +3,17 @@
    =============== */
 
 :root {
-  --bg-color: white;
-  --second-color: #141414
+  --primary-color: white;
+  --secondary-color: black;
+  --box-shadow: 0 0 5px #00000059;
+  --strong-box-shadow: 0 2px 5px #00000099;
+}
+
+:root.dark {
+  --primary-color: black;
+  --secondary-color: white;
+  --box-shadow: 0 0 5px #FFFFFF59;
+  --strong-box-shadow: 0 2px 5px #FFFFFF99;
 }
 
 *,*::after, *::before {
@@ -19,14 +28,14 @@
 
 h2 {
   font-family: sans-serif;
-  color: var(--bg-color);
-  background-color: var(--second-color);
+  color: var(--primary-color);
+  background-color: var(--secondary-color);
   padding: 10px;
 }
 
 h3 {
-  background-color: black;
-  color: white;
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
   padding: 10px;
 }
 
@@ -35,19 +44,19 @@ h3 {
    ======== */
 
 body {
-  background-color: var(--bg-color);
+  background-color: var(--primary-color);
   min-height: 100vh;
   display: grid;
   grid-template-rows: min-content 8fr 1fr;
 }
 
 nav {
-  background-color: var(--second-color);
-  color: var(--bg-color);
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
   padding: 30px;
   display: flex;
-  justify-content: flex-start;
-  box-shadow: 0 2px 5px rgb(0 0 0 / 60%);
+  justify-content: space-between;
+  box-shadow: var(--strong-box-shadow);
 }
 
 .card-list {
@@ -76,8 +85,8 @@ button {
   cursor: pointer;
   font-weight: bold;
   border: none;
-  background-color: var(--second-color);
-  color: var(--bg-color);
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
   margin: 10px;
 }
 
@@ -86,16 +95,17 @@ button {
   justify-self: end;
   align-self: end;
   border-radius: 100px;
-  box-shadow: 0 0 5px black;
+  box-shadow: 0 0 5px var(--secondary-color);
 }
 
 .add-book-button {
+  box-shadow: var(--strong-box-shadow);
   align-self: center;
   padding: 8px 28px;
 }
 
 .close-button {
-  fill: white;
+  fill: var(--primary-color);
   font-weight: bold;
   font-size: 15px;
   height: 20px;
@@ -115,10 +125,10 @@ button {
   display: grid;
   position: relative;
   gap: 15px;
-  background-color: var(--bg-color);
-  color: var(--second-color);
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
   padding: 0 0 0 0;
-  box-shadow: 0 0 5px rgb(0 0 0 / 35%);
+  box-shadow: var(--box-shadow);
   transform: scale(0);
   grid-template-rows: min-content 1fr 1fr 1fr;
   transition: 0.5s;
@@ -148,11 +158,11 @@ form {
   gap: 5px;
   font-weight: bold;
   text-align: center;
-  background-color: white;
+  background-color: var(--primary-color);
   position: absolute;
   top: 35%;
   left: 45%;
-  box-shadow: 0 0 5px rgb(0 0 0 / 35%);
+  box-shadow: var(--box-shadow);
   transform: scale(0);
   transition: 0.5s;
   z-index: 1;
@@ -171,10 +181,14 @@ input[type='tel'] {
   padding: 7px;
 }
 
+label {
+  color: var(--secondary-color);
+}
+
 form input[type="checkbox"] {
   cursor: pointer;
   background-color: #FE4A49;
-  border: 1px solid var(--second-color);
+  border: 1px solid var(--secondary-color);
   border-radius: 25px;
   position: relative;
   width: 30px;
@@ -193,7 +207,7 @@ form input[type="checkbox"]::before {
   top: 0;
   left: 0;
   content: "";
-  background-color: var(--second-color);
+  background-color: var(--secondary-color);
   width: 13px;
   height: 13px;
   border-radius: 25px;
@@ -232,7 +246,7 @@ span {
 .card-checkbox::before {
   position: absolute;
   top: 0;
-  left: 7px;
+  left: 8px;
   padding: 1px 5px;
   content: "Not";
   transition: 0.1s;
@@ -245,7 +259,7 @@ span {
 
 .card-checkbox:checked::before {
   top: 4px;
-  left: 5px;
+  left: 9px;
   background-color: lightslategray;
   box-shadow: none;
   border: none;
@@ -253,9 +267,9 @@ span {
 
 .card-checkbox::after {
   position: absolute;
-  top: 1px;
-  left: 43px;
-  padding: 5px 4px;
+  top: 2px;
+  left: 42px;
+  padding: 4px 4px;
   content: "Read";
   transition: 0.1s;
   background-color: lightslategray;
@@ -270,6 +284,4 @@ span {
   background-color: green;
   border: 1px solid black;
   box-shadow: 0 5px 0 0 #013f01;
-  transform: scale(0.9);
 }
-
