@@ -39,9 +39,11 @@ class BookCardBuilder {
   }
 
   setToggle() {
-    const readToggle = document.createElement("input")
+    const readToggle = document.createElement("input");
     readToggle.type="checkBox";
-    readToggle.classList.add("card-checkbox")
+    readToggle.classList.add("card-checkbox");
+    readToggle.addEventListener("click", toggleReadStatusOnBookCard);
+    readToggle.checked = this.book.read;
     this.cardBox.append(readToggle);
     return this;
   }
@@ -161,6 +163,10 @@ function Book(title, author, pages, read) {
   this.read = read;
 }
 
+Book.prototype.toggleReadStatus = function() {
+  this.read = !this.read;
+}
+
 function addBookToLibrary(newBook) {
   const bookComponent = new BookCardBuilder(newBook).build();
   displayBookOnScreen(bookComponent);
@@ -177,14 +183,14 @@ function removeCardFromLibrary(event) {
 
 function removeBookFromList(event) {
   const bookCard = event.target.parentElement
-  const bookTitle = bookCard.querySelector(".title").textContent;
-  const bookAuthor = bookCard.querySelector(".author").textContent
-  const bookPage = bookCard.querySelector(".pages").textContent
-  const bookPosition = getPositionInLibrary(bookTitle, bookAuthor, bookPage);
+  const bookPosition = getPositionInLibrary(bookCard);
   myLibrary.splice(bookPosition, 1);
 }
 
-function getPositionInLibrary(bookTitle, bookAuthor, bookPage) {
+function getPositionInLibrary(bookCard) {
+  const bookTitle = bookCard.querySelector(".title").textContent;
+  const bookAuthor = bookCard.querySelector(".author").textContent
+  const bookPage = bookCard.querySelector(".pages").textContent
   const bookFromLibrary =  myLibrary.filter(
     book => bookTitle === book.title && bookAuthor === book.author && bookPage === book.pages
   )[0];
@@ -233,6 +239,13 @@ function createBookInFormSubmit(event) {
     removeFormFromScreen();
     form.resetInputValues();
   }
+}
+
+function toggleReadStatusOnBookCard(event) {
+  const bookCard = event.target.parentElement;
+  const bookPositionInLibrary = getPositionInLibrary(bookCard);
+  const book = myLibrary[bookPositionInLibrary];
+  book.toggleReadStatus();
 }
 
 showFormOnScreen();

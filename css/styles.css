@@ -235,19 +235,21 @@ span {
   content: "Read";
   transition: 0.1s;
   background-color: lightslategray;
+  transform: scale(0.9);
 }
 
 .card-checkbox::before {
   position: absolute;
   top: 4px;
-  left: 6px;
+  left: 7px;
   padding: 2px 5px;
   content: "Not";
   transition: 0.1s;
   background-color: red;
   box-shadow: -3px 0 0 0 black;
-  transform: scale(0.95);
+  transform: scale(0.9);
   border: 1px solid black;
+  border-left: 2px black solid;
 }
 
 .card-checkbox:checked::after {
