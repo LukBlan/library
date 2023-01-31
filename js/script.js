@@ -20,36 +20,44 @@ class BookCardBuilder {
     return this;
   }
 
-  setAuthor() {
+  setField(name) {
+    const container = document.createElement("div");
     const author = document.createElement("p");
-    author.innerText = this.book.author;
-    author.classList.add("author");
-    this.cardBox.append(author);
-    return this;
-  }
+    const text = document.createElement("p");
 
-  setPages() {
-    const pages = document.createElement("p");
-    pages.innerText = this.book.pages;
-    pages.classList.add("pages");
-    this.cardBox.append(pages);
+    text.innerText = name;
+    text.classList.add("border-bellow-field");
+    author.innerText = this.book[name];
+    author.classList.add(name);
+    this.cardBox.append(author);
+    container.append(author);
+    container.append(text);
+    this.cardBox.append(container);
     return this;
   }
 
   setToggle() {
+    const container = document.createElement("div");
+    const text = document.createElement("p");
     const readToggle = document.createElement("input");
+
+    text.innerText = "You read It?";
+    text.classList.add("border-bellow-field")
     readToggle.type="checkBox";
     readToggle.classList.add("card-checkbox");
     readToggle.addEventListener("click", toggleReadStatusOnBookCard);
     readToggle.checked = this.book.read;
-    this.cardBox.append(readToggle);
+
+    container.append(readToggle);
+    container.append(text);
+    this.cardBox.append(container);
     return this;
   }
 
   build() {
     this.setTitle()
-      .setAuthor()
-      .setPages()
+      .setField("author")
+      .setField("pages")
       .setToggle()
       .setDeleteButton();
     return this.cardBox
@@ -224,7 +232,7 @@ function removeCardFromLibrary(event) {
 }
 
 function removeBookFromList(event) {
-  const bookCard = event.currentTarget.parentElement
+  const bookCard = event.currentTarget.parentElement;
   const bookPosition = getPositionInLibrary(bookCard);
   myLibrary.splice(bookPosition, 1);
 }
@@ -277,7 +285,7 @@ function createBookInFormSubmit(event) {
 }
 
 function toggleReadStatusOnBookCard(event) {
-  const bookCard = event.target.parentElement;
+  const bookCard = event.currentTarget.parentElement.parentElement;
   const bookPositionInLibrary = getPositionInLibrary(bookCard);
   const book = myLibrary[bookPositionInLibrary];
   book.toggleReadStatus();

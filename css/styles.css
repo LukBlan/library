@@ -94,14 +94,14 @@ button {
   bottom: 3%;
   right: 3%;
   font-size: 1rem;
-  padding: 14px 18px;
+  padding: 8px 13px;
   border-radius: 100px;
   box-shadow: var(--box-shadow);
-  transition: 1s;
+  transition: all 1s ease 0s;
 }
 
 .rotate {
-  transform: scale(1.1) rotate(225deg);
+  transform: scale(1.3) rotate(225deg);
 }
 
 .add-book-button {
@@ -146,6 +146,13 @@ button {
   transform: scale(0);
   grid-template-rows: min-content 1fr 1fr 1fr;
   transition: 0.5s;
+  align-items: center;
+}
+
+.border-bellow-field {
+  border-top: 1px solid var(--secondary-color);
+  font-size: 0.6rem;
+  margin: 0 20%;
 }
 
 .card * {
@@ -262,8 +269,8 @@ span {
   position: absolute;
   top: 0;
   left: 8px;
-  padding: 1px 5px;
-  content: "Not";
+  padding: 1px 6px;
+  content: "No";
   transition: 0.1s;
   background-color: red;
   line-height: 2;
@@ -280,6 +287,19 @@ span {
   border: none;
 }
 
+.card-checkbox::after {
+  position: absolute;
+  top: 3px;
+  left: 42px;
+  padding: 3px 5px;
+  content: "Yes";
+  transition: 0.1s;
+  background-color: lightslategray;
+  border-radius: 25px;
+  line-height: 2;
+  font-size: 0.75rem;
+}
+
 .card-checkbox:checked::after {
   top: 0;
   left: 41px;
@@ -287,16 +307,4 @@ span {
   border: 1px solid black;
   box-shadow: 0 5px 0 0 #013f01;
   transform: scale(0.94);
-}
-.card-checkbox::after {
-  position: absolute;
-  top: 3px;
-  left: 42px;
-  padding: 3px 2px;
-  content: "Read";
-  transition: 0.1s;
-  background-color: lightslategray;
-  border-radius: 25px;
-  line-height: 2;
-  font-size: 0.75rem;
 }
