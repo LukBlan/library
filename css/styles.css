@@ -139,7 +139,6 @@ button {
   font-weight: bold;
   display: grid;
   position: relative;
-  gap: 15px;
   background-color: var(--primary-color);
   color: var(--secondary-color);
   padding: 0 0 0 0;
