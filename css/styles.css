@@ -70,11 +70,6 @@ nav {
   grid-template-rows: repeat(auto-fill, minmax(200px, 1fr));
 }
 
-.show-box {
-  transition: 0.5s;
-  transform: scale(1) !important;
-}
-
 /* ============
     Components
    ============ */
@@ -143,10 +138,9 @@ button {
   color: var(--secondary-color);
   padding: 0 0 0 0;
   box-shadow: var(--box-shadow);
-  transform: scale(0);
   grid-template-rows: min-content 1fr 1fr 1fr;
-  transition: 0.5s;
   align-items: center;
+  animation: scaleElement 0.5s;
 }
 
 .border-bellow-field {
@@ -183,9 +177,9 @@ form {
   top: 35%;
   left: 45%;
   box-shadow: var(--box-shadow);
-  transform: scale(0);
-  transition: 0.5s;
   z-index: 1;
+  box-shadow: 0 0 0 100vh rgba(0,0,0,0.7);
+  animation: scaleElement 0.5s;
 }
 
 form > div {
@@ -306,4 +300,18 @@ span {
   border: 1px solid black;
   box-shadow: 0 5px 0 0 #013f01;
   transform: scale(0.94);
+}
+
+/*              Frames              */
+@keyframes scaleElement {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+    
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }

@@ -250,9 +250,7 @@ function getPositionInLibrary(bookCard) {
 function displayBookOnScreen(bookComponent) {
   const booksList = document.querySelector("ul");
   booksList.append(bookComponent);
-  setTimeout(() => {
-    bookComponent.classList.add("show-box");
-  }, 1);
+
 }
 
 function showFormOnScreen() {
@@ -265,9 +263,6 @@ function displayFormOnScreen(event) {
   const displayFormButton = event.target;
   toggleRotation();
   document.body.append(form);
-  setTimeout(() => {
-    form.classList.add("show-box");
-  }, 1)
   displayFormButton.removeEventListener("click", displayFormOnScreen);
 }
 
@@ -293,10 +288,7 @@ function toggleReadStatusOnBookCard(event) {
 
 function removeParentContainer(event) {
   const parentContainer = event.currentTarget.parentElement;
-  parentContainer.classList.remove("show-box");
-  setTimeout(() => {
-    parentContainer.parentElement.removeChild(parentContainer)
-  }, 500);
+  parentContainer.parentElement.removeChild(parentContainer)
 }
 
 function toggleRotation() {
