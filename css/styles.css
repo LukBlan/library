@@ -101,6 +101,8 @@ button {
 }
 
 .add-book-button {
+  background-color: black;
+  color: white;
   box-shadow: var(--strong-box-shadow);
   align-self: center;
   padding: 8px 28px;
@@ -172,7 +174,8 @@ form {
   flex-direction: column;
   font-weight: bold;
   text-align: center;
-  background-color: var(--primary-color);
+  background-color: white;
+  color: black;
   position: absolute;
   top: 35%;
   left: 45%;
@@ -194,10 +197,6 @@ input[type='text'],
 input[type='tel'] {
   padding: 7px;
   box-shadow: var(--box-shadow);
-}
-
-label {
-  color: var(--secondary-color);
 }
 
 form input[type="checkbox"] {
