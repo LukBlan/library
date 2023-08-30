@@ -208,30 +208,27 @@ form input[type="checkbox"] {
   width: 30px;
   height: 15px;
   appearance: none;
-  transition: 0.1s;
+  transition: 0.3s;
 }
 
 form input[type="checkbox"]:checked {
   background-color: green;
-  transition: 0.1s;
 }
 
 form input[type="checkbox"]::before {
   position: absolute;
-  top: 0;
-  left: 0;
+  left: 1%;
   content: "";
   background-color: var(--secondary-color);
   width: 13px;
   height: 13px;
   border-radius: 25px;
-  transition: 0.1s;
+  transition: 0.3s;
 }
 
 form input[type="checkbox"]:checked::before {
-  left: 60%;
+  transform: translateX(117%);
   content: "";
-  transition: 0.1s;
 }
 
 input:invalid + span::before {
