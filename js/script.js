@@ -136,7 +136,6 @@ class FormBuilder {
     const button = new CloseButtonSvgFactory().createSvg();
     button.addEventListener("click", (event) => {
       removeParentContainer(event);
-      toggleRotation();
       showFormOnScreen();
     });
     return button;
@@ -261,8 +260,7 @@ function showFormOnScreen() {
 function displayFormOnScreen(event) {
   const form = new FormBuilder().build();
   const displayFormButton = event.target;
-  toggleRotation();
-  document.body.append(form);
+  document.body.prepend(form);
   displayFormButton.removeEventListener("click", displayFormOnScreen);
 }
 
@@ -274,7 +272,6 @@ function createBookInFormSubmit(event) {
     const newBook = form.createNewBook();
     addBookToLibrary(newBook);
     removeParentContainer(event);
-    toggleRotation();
     showFormOnScreen();
   }
 }
@@ -291,14 +288,6 @@ function removeParentContainer(event) {
   parentContainer.parentElement.removeChild(parentContainer)
 }
 
-function toggleRotation() {
-  const displayFormButton = document.querySelector(".display-form-button");
-  if (displayFormButton.classList.value.includes("rotate")) {
-    displayFormButton.classList.remove("rotate");
-  } else {
-    displayFormButton.classList.add("rotate");
-  }
-}
 
 function addToggleDarkModeToIcon() {
   const svgDarkMode = document.querySelector(".toggle-dark-mode");
