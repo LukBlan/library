@@ -51,6 +51,10 @@ body {
   grid-template-rows: min-content 8fr;
 }
 
+body.form-on-screen {
+  box-shadow: 0 0 0 100vh rgba(0,0,0,0.5) inset;
+}
+
 nav {
   background-color: var(--secondary-color);
   color: var(--primary-color);
@@ -146,6 +150,10 @@ form ~ .display-form-button {
   animation: scaleElement 0.7s cubic-bezier(0.175, 0.285, 0.32, 1.575);
 }
 
+.form-on-screen .card {
+  z-index: -1;
+}
+
 .border-bellow-field {
   border-top: 1px solid var(--secondary-color);
   font-size: 0.6rem;
@@ -162,12 +170,17 @@ form ~ .display-form-button {
 
 @keyframes showElement {
   0% {
-    transform: scale(0.1);
+    opacity: 0;
+    transform: translateX(-200%);
+  }
+
+  30% {
+    opacity: 0;
   }
 
   100% {
     opacity: 1;
-    transform: scale(1);
+    transform: translateX(0%);
   }
 }
 
@@ -195,8 +208,7 @@ form {
   left: 45%;
   box-shadow: var(--box-shadow);
   z-index: 1;
-  box-shadow: 0 0 0 100vh rgba(0,0,0,0.7);
-  animation: scaleElement 0.5s cubic-bezier(0.175, 0.285, 0.32, 1.475);
+  animation: showForm 0.5s cubic-bezier(0.175, 0.285, 0.32, 1.875);
 }
 
 form > div {
@@ -269,6 +281,7 @@ span {
 }
 
 .card-checkbox::before {
+  cursor: pointer;
   position: absolute;
   top: 0;
   left: 8px;
@@ -290,6 +303,7 @@ span {
 }
 
 .card-checkbox::after {
+  cursor: pointer;
   position: absolute;
   top: 5px;
   left: 42px;
@@ -320,5 +334,15 @@ span {
   100% {
     transform: scale(1);
     opacity: 1;
+  }
+}
+
+@keyframes showForm {
+  0% {
+    transform: translateX(-200%);    
+  }
+
+  100% {
+    transform: translateX(0%);
   }
 }

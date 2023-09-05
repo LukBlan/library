@@ -136,6 +136,7 @@ class FormBuilder {
     const button = new CloseButtonSvgFactory().createSvg();
     button.addEventListener("click", (event) => {
       removeParentContainer(event);
+      document.body.classList.toggle("form-on-screen");
       showFormOnScreen();
     });
     return button;
@@ -261,6 +262,7 @@ function displayFormOnScreen(event) {
   const form = new FormBuilder().build();
   const displayFormButton = event.target;
   document.body.prepend(form);
+  document.body.classList.toggle("form-on-screen");
   displayFormButton.removeEventListener("click", displayFormOnScreen);
 }
 
@@ -271,6 +273,7 @@ function createBookInFormSubmit(event) {
   } else {
     const newBook = form.createNewBook();
     addBookToLibrary(newBook);
+    document.body.classList.toggle("form-on-screen");
     removeParentContainer(event);
     showFormOnScreen();
   }
