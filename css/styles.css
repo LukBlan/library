@@ -20,6 +20,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  transition: background-color 0.5s;
   /* outline: 1px solid red */
 }
 
@@ -211,6 +212,19 @@ form {
   animation: showForm 0.5s cubic-bezier(0.175, 0.285, 0.32, 1.875);
 }
 
+form * {
+  opacity: 0;
+  transform: scale(0.1);
+  animation: formElements 0.5s 0.5s forwards;
+}
+
+@keyframes formElements {
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 form > div {
   display: flex;
   flex-direction: column;
@@ -339,7 +353,7 @@ span {
 
 @keyframes showForm {
   0% {
-    transform: translateX(-200%);    
+    transform: rotate(-90deg) translateY(-200%);    
   }
 
   100% {
