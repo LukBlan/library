@@ -142,7 +142,8 @@ form ~ .display-form-button {
   box-shadow: var(--box-shadow);
   grid-template-rows: min-content 1fr 1fr 1fr;
   align-items: center;
-  animation: scaleElement 0.5s;
+  transform-origin: bottom left;
+  animation: scaleElement 0.7s cubic-bezier(0.175, 0.285, 0.32, 1.575);
 }
 
 .border-bellow-field {
@@ -182,7 +183,7 @@ form {
   box-shadow: var(--box-shadow);
   z-index: 1;
   box-shadow: 0 0 0 100vh rgba(0,0,0,0.7);
-  animation: scaleElement 0.5s;
+  animation: scaleElement 0.5s cubic-bezier(0.175, 0.285, 0.32, 1.475);
 }
 
 form > div {
@@ -298,7 +299,7 @@ span {
 /*              Frames              */
 @keyframes scaleElement {
   0% {
-    transform: scale(0);
+    transform: rotate(180deg) scale(0.1);
     opacity: 0;
     
   }
