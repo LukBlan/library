@@ -7,10 +7,17 @@ Responsive Library page where you can add and delete books
 - Css Animations
 - Dark Mode
 
-
-## Technologies
+## Languages
 
 - Html
 - Css
 - TypeScript
+
+##  Libraries / Frameworks
+
 - Tailwind
+
+## Tools
+
+- npm
+- Vite
