@@ -5,9 +5,9 @@
   "type": "module",
 
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -p ./config && vite build",
-    "preview": "vite preview"
+    "dev": "vite --config ./config/vite.config.js",
+    "build": "tsc -p ./config && vite --config ./config/vite.config.js build",
+    "preview": "vite --config ./config/vite.config.js preview"
   },
 
   "devDependencies": {
