@@ -1,12 +1,36 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="min-h-screen">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="./src/index.css" rel="stylesheet" />
     <title>Vite + TS</title>
   </head>
-  <body>
+
+  <body class="min-h-screen grid grid-cols-[20%_80%] grid-rows-1">
+    <aside class="bg-amber-600">
+      <div>Search</div>
+      <div>Top Rated</div>
+      <div>Books</div>
+      <div>Comics</div>
+      <div>Audiobooks</div>
+      <div>Podcast</div>
+      <div>Settings</div>
+      <div>User</div>
+    </aside>
+
+    <main class="bg-red-500 p-6">
+      <div>
+        <div class="flex justify-between">
+          <h2>Tab Name</h2>
+          <p>Layout icons</p>
+        </div>
+
+        <ul>Labels</ul>
+      </div>
+      <section>Book Section</section>
+    </main>
+
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
