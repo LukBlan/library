@@ -3,5 +3,8 @@ import pluginChecker from 'vite-plugin-checker';
 
 export default defineConfig({
   base: './',
-  plugins: [pluginChecker({ typescript: {root: "./config"} })]
+  plugins: [pluginChecker({ typescript: {root: "./config"} })],
+  css: {
+    postcss: "config"
+  }
 })
