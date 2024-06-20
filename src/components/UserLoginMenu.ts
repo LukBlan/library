@@ -41,6 +41,7 @@ class UserLoginMenu {
     const selectUserOption: HTMLLIElement = this.createUserOption("Select User");
     const deleteUserOption: HTMLLIElement = this.createUserOption("Delete User");
 
+    applyCssClasses(newUserOption, ["border-y", "border-violet/50"])
     userSection.append(userMenu);
     userMenu.append(selectUserOption);
     userMenu.append(newUserOption);
