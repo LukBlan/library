@@ -13,7 +13,7 @@ export default {
       "violet": "#7d77d5",
       "violet-light": "#e6ecfa",
       "night": "#131116",
-      "night-3": "#0D0C0F",
+      "black": "#0D0C0F",
     },
     extend: {},
   },
