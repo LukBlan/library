@@ -29,8 +29,9 @@ class UserLoginMenu {
       "hover:bg-violet", "hover:text-white"
     ];
     const newUserOption: HTMLLIElement = document.createElement("li");
+    const textNode = document.createTextNode(text)
     applyCssClasses(newUserOption, tailwindClassList);
-    newUserOption.innerText = text;
+    newUserOption.append(textNode)
     return newUserOption;
   }
 

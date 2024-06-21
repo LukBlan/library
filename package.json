@@ -3,13 +3,17 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+
   "scripts": {
-    "dev": "vite --config ./config/vite.config.js",
-    "build": "tsc -p ./config && vite --config ./config/vite.config.js build",
-    "preview": "vite --config ./config/vite.config.js preview"
+    "dev": "vite --config config/vite.config.ts",
+    "build": "tsc -p ./config && vite --config config/vite.config.ts build",
+    "preview": "vite --config config/vite.config.ts preview",
+    "test": "vitest --environment jsdom"
   },
+
   "devDependencies": {
     "@eslint/js": "^9.4.0",
+    "@testing-library/dom": "^10.1.0",
     "autoprefixer": "^10.4.19",
     "eslint": "^9.4.0",
     "globals": "^15.3.0",
@@ -18,6 +22,8 @@
     "typescript": "^5.2.2",
     "typescript-eslint": "^7.11.0",
     "vite": "^5.2.0",
-    "vite-plugin-checker": "^0.6.4"
+    "vite-plugin-checker": "^0.6.4",
+    "vitest": "^1.6.0",
+    "jsdom": "^24.1.0"
   }
 }
