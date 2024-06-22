@@ -1,6 +1,6 @@
-import { LoginScreenUi } from "./ui/LoginScreenUi";
+import { LoginScreen } from "./ui/LoginScreen";
 import { UserLoginMenu } from "./components/UserLoginMenu";
 
 const userLoginMenu: HTMLElement = new UserLoginMenu().create();
-const loginScreen: LoginScreenUi = new LoginScreenUi(userLoginMenu);
+const loginScreen: LoginScreen = new LoginScreen(userLoginMenu);
 loginScreen.renderMenu()

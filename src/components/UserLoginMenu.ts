@@ -7,48 +7,41 @@ class UserLoginMenu {
       "grid", "justify-center", "content-center",
       "bg-violet-light", "dark:bg-black"
     ];
-    const userSection: HTMLElement = document.createElement("section");
+    const userSection: HTMLElement = document.createElement("main");
     applyCssClasses(userSection, tailwindClassList);
     return userSection;
   }
 
-  createUserMenu(): HTMLUListElement {
-    const tailwindClassList = [
-      "text-2xl", "md:text-4xl", "2xl:text-6xl",
-      "text-center", "shadow-md", "cursor-pointer", "enter-from-left",
-      "bg-white"
-    ];
-    const userMenu: HTMLUListElement = document.createElement("ul");
-    applyCssClasses(userMenu, tailwindClassList);
-    return userMenu;
+  newUserForm(): HTMLFormElement {
+    const userForm: HTMLFormElement = document.createElement("form");
+    const label: HTMLLabelElement = document.createElement("label");
+    const input: HTMLInputElement = document.createElement("input")
+    const button: HTMLButtonElement = document.createElement("button");
+
+    userForm.name = "form";
+    button.innerText = "+";
+
+    userForm.append(label);
+    userForm.append(input);
+    userForm.append(button);
+
+    return userForm;
   }
 
-  createUserOption(text: string): HTMLLIElement {
-    const tailwindClassList = [
-      "py-6", "px-6",
-      "hover:bg-violet", "hover:text-white"
-    ];
-    const newUserOption: HTMLLIElement = document.createElement("li");
-    const textNode = document.createTextNode(text)
-    applyCssClasses(newUserOption, tailwindClassList);
-    newUserOption.append(textNode)
-    return newUserOption;
+  createUserMenu(): HTMLElement {
+    const userMenu: HTMLElement = document.createElement("section");
+    return userMenu
   }
 
   create(): HTMLElement {
     const userSection: HTMLElement = this.createUserSection();
-    const userMenu: HTMLUListElement = this.createUserMenu();
-    const newUserOption: HTMLLIElement = this.createUserOption("Create User");
-    const selectUserOption: HTMLLIElement = this.createUserOption("Select User");
-    const deleteUserOption: HTMLLIElement = this.createUserOption("Delete User");
+    const userMenu: HTMLElement = this.createUserMenu();
+    const newUserForm: HTMLFormElement = this.newUserForm();
 
-    applyCssClasses(newUserOption, ["border-y", "border-violet/50"])
+    userMenu.append(newUserForm);
     userSection.append(userMenu);
-    userMenu.append(selectUserOption);
-    userMenu.append(newUserOption);
-    userMenu.append(deleteUserOption);
 
-    return userSection
+    return userSection;
   }
 }
 

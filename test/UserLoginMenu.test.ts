@@ -1,14 +1,16 @@
-import { test, expect, describe } from "vitest";
+import {test, expect, describe, beforeAll} from "vitest";
 import { UserLoginMenu } from "../src/components/UserLoginMenu";
-import { LoginScreenUi } from "../src/ui/LoginScreenUi";
-import { queryByText } from "@testing-library/dom";
+import { LoginScreen } from "../src/ui/LoginScreen";
+import {queryByRole} from "@testing-library/dom";
 
 describe("UserLoginMenu", () => {
-  test("Should render user menu on screen", () => {
+  beforeAll(() => {
     const userLoginMenu: HTMLElement = new UserLoginMenu().create();
-    const loginScreen: LoginScreenUi = new LoginScreenUi(userLoginMenu);
+    const loginScreen: LoginScreen = new LoginScreen(userLoginMenu);
     loginScreen.renderMenu()
-    const body = document.body;
-    expect(queryByText(body, "Create User")).not.toBe(null);
+  })
+
+  test("Should render new user form on screen", () => {
+    expect(queryByRole(document.body, "form")).not.toBe(null);
   })
 })

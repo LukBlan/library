@@ -1,4 +1,4 @@
-class LoginScreenUi {
+class LoginScreen {
   constructor(private menuElement: HTMLElement) {
 
   }
@@ -8,4 +8,4 @@ class LoginScreenUi {
   }
 }
 
-export { LoginScreenUi }
+export { LoginScreen }
