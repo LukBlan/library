@@ -1,5 +1,5 @@
 
-import { LoginScreen } from "../ui/LoginScreen";
+import { LoginScreen } from "../UI/LoginScreen";
 
 class App {
   constructor(

@@ -1,4 +1,4 @@
-import { LoginScreen } from "./ui/LoginScreen";
+import { LoginScreen } from "./UI/LoginScreen";
 import { UserLoginMenu } from "./components/UserLoginMenu";
 import {App} from "./domain/App";
 

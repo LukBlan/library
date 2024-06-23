@@ -1,8 +1,8 @@
 import {test, expect, describe, beforeAll} from "vitest";
-import { UserLoginMenu } from "../src/components/UserLoginMenu";
-import { LoginScreen } from "../src/ui/LoginScreen";
+import { UserLoginMenu } from "../../src/components/UserLoginMenu";
+import { LoginScreen } from "../../src/UI/LoginScreen";
 import {queryByRole} from "@testing-library/dom";
-import {App} from "../src/domain/App";
+import {App} from "../../src/domain/App";
 
 describe("UserLoginMenu", () => {
   beforeAll(() => {
