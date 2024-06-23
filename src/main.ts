@@ -1,6 +1,9 @@
 import { LoginScreen } from "./ui/LoginScreen";
 import { UserLoginMenu } from "./components/UserLoginMenu";
+import {App} from "./domain/App";
 
-const userLoginMenu: HTMLElement = new UserLoginMenu().create();
+
+const userLoginMenu: UserLoginMenu = new UserLoginMenu();
 const loginScreen: LoginScreen = new LoginScreen(userLoginMenu);
-loginScreen.renderMenu()
+const app = new App(loginScreen);
+app.start();

@@ -1,5 +1,6 @@
 import {applyCssClasses} from "../services/applyCssClasses";
 import "./UserLoginMenu.css"
+import {App} from "../domain/App";
 
 class UserLoginMenu {
   createUserSection(): HTMLElement {
@@ -28,18 +29,19 @@ class UserLoginMenu {
     return userForm;
   }
 
-  createUserMenu(): HTMLElement {
-    const userMenu: HTMLElement = document.createElement("section");
-    return userMenu
+  createUserMenuContainer(): HTMLElement {
+    const userMenuContainer: HTMLElement = document.createElement("section");
+    return userMenuContainer
   }
 
-  create(): HTMLElement {
+  create(app: App): HTMLElement {
+    app
     const userSection: HTMLElement = this.createUserSection();
-    const userMenu: HTMLElement = this.createUserMenu();
+    const userMenuContainer: HTMLElement = this.createUserMenuContainer();
     const newUserForm: HTMLFormElement = this.newUserForm();
 
-    userMenu.append(newUserForm);
-    userSection.append(userMenu);
+    userMenuContainer.append(newUserForm);
+    userSection.append(userMenuContainer);
 
     return userSection;
   }
