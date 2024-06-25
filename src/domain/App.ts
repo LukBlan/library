@@ -1,10 +1,11 @@
 
 import { LoginScreen } from "../UI/LoginScreen";
+import {LocalStorage} from "../services/LocalStorage";
 
 class App {
   constructor(
-    // private localStorage: LocalStorage,
     private loginScreen: LoginScreen,
+    private localStorage: LocalStorage,
   ) {}
 
   start() {
