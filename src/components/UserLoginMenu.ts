@@ -40,17 +40,25 @@ class UserLoginMenu {
   }
 
   createUserMenuContainer(): HTMLElement {
+    const userMenuClasses = ["shadow", "p-2", "bg-violet", "rounded"]
     const userMenuContainer: HTMLElement = document.createElement("section");
+    applyCssClasses(userMenuContainer, userMenuClasses)
     return userMenuContainer
   }
 
   createUsersList(app: App) {
     const usersListElement: HTMLUListElement = document.createElement("ul");
+    const userElementClasses = [
+      "py-2", "px-1", "text-white", "font-bold",
+      "hover:text-white", "hover:bg-violet-semi-light",
+      "leading-none", "cursor-pointer"
+    ]
     const users = app.getUsers();
 
     users.forEach(user => {
       const userLiElement = document.createElement("li");
       userLiElement.innerText = user;
+      applyCssClasses(userLiElement, userElementClasses)
       usersListElement.append(userLiElement);
     })
 
