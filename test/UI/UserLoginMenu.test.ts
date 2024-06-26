@@ -3,12 +3,14 @@ import { UserLoginMenu } from "../../src/components/UserLoginMenu";
 import { LoginScreen } from "../../src/UI/LoginScreen";
 import {queryByRole} from "@testing-library/dom";
 import {App} from "../../src/domain/App";
+import {LocalStorage} from "../../src/services/LocalStorage";
 
 describe("UserLoginMenu", () => {
   beforeAll(() => {
     const userLoginMenu: UserLoginMenu = new UserLoginMenu();
     const loginScreen: LoginScreen = new LoginScreen(userLoginMenu);
-    const app: App = new App(loginScreen);
+    const appLocalStorage: LocalStorage = new LocalStorage(localStorage);
+    const app: App = new App(loginScreen, appLocalStorage);
     loginScreen.render(app)
   })
 
