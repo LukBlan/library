@@ -13,14 +13,24 @@ class UserLoginMenu {
     return userSection;
   }
 
-  newUserForm(): HTMLFormElement {
+  newUserForm(app: App): HTMLFormElement {
     const userForm: HTMLFormElement = document.createElement("form");
     const label: HTMLLabelElement = document.createElement("label");
     const input: HTMLInputElement = document.createElement("input")
     const button: HTMLButtonElement = document.createElement("button");
 
+    userForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const newUserName = input.value;
+      app.createUser(newUserName);
+    })
+
+    label.htmlFor = "newUser"
+    input.name = "newUser"
+    input.id = "newUser"
+    input.placeholder = "Create new User"
     userForm.name = "form";
-    button.innerText = "+";
+    button.textContent = "+";
 
     userForm.append(label);
     userForm.append(input);
@@ -34,14 +44,28 @@ class UserLoginMenu {
     return userMenuContainer
   }
 
+  createUsersList(app: App) {
+    const usersListElement: HTMLUListElement = document.createElement("ul");
+    const users = app.getUsers();
+
+    users.forEach(user => {
+      const userLiElement = document.createElement("li");
+      userLiElement.innerText = user;
+      usersListElement.append(userLiElement);
+    })
+
+    return usersListElement;
+  }
+
   create(app: App): HTMLElement {
-    app
     const userSection: HTMLElement = this.createUserSection();
     const userMenuContainer: HTMLElement = this.createUserMenuContainer();
-    const newUserForm: HTMLFormElement = this.newUserForm();
+    const newUserForm: HTMLFormElement = this.newUserForm(app);
+    const usersList: HTMLUListElement = this.createUsersList(app);
 
-    userMenuContainer.append(newUserForm);
     userSection.append(userMenuContainer);
+    userMenuContainer.append(newUserForm);
+    userMenuContainer.append(usersList);
 
     return userSection;
   }

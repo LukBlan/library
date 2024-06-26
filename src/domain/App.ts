@@ -8,8 +8,17 @@ class App {
     private localStorage: LocalStorage,
   ) {}
 
-  start() {
+  appChange(): void {
     this.loginScreen.render(this);
+  }
+
+  getUsers(): string[] {
+    return this.localStorage.getUsers();
+  }
+
+  createUser(newUserName: string): void {
+    this.localStorage.createUser(newUserName);
+    this.appChange()
   }
 }
 

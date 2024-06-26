@@ -7,4 +7,4 @@ const appLocalStorage: LocalStorage = new LocalStorage(localStorage)
 const userLoginMenu: UserLoginMenu = new UserLoginMenu();
 const loginScreen: LoginScreen = new LoginScreen(userLoginMenu);
 const app = new App(loginScreen, appLocalStorage);
-app.start();
+app.appChange();

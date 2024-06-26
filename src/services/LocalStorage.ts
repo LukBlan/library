@@ -1,7 +1,5 @@
 class LocalStorage {
-  constructor(private localStorage: Storage) {
-
-  }
+  constructor(private localStorage: Storage) {}
 
   createUser(userName: string): void {
     const users = this.getUsers()
@@ -9,9 +7,9 @@ class LocalStorage {
     this.setUsers(newUsers);
   }
 
-  deleteUser(userName) {}
-
-  editUser(userName, newUsername) {}
+  // deleteUser(userName) {}
+  //
+  // editUser(userName, newUsername) {}
 
   setUsers(users: string[]): void {
     const jsonUsers: string = JSON.stringify(users);
@@ -19,8 +17,13 @@ class LocalStorage {
   }
 
   getUsers(): string[] {
-    const localStorageContent: string | undefined = localStorage.getItem("users")
-    return JSON.parse(localStorageContent) || [];
+    const localStorageContent: string | undefined | null = localStorage.getItem("users")
+
+    if (!localStorageContent) {
+      return []
+    }
+
+    return JSON.parse(localStorageContent);
   }
 
   clear() {

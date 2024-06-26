@@ -9,6 +9,7 @@ class LoginScreen {
 
   render(app: App) {
     const userMenu: HTMLElement = this.userLoginMenu.create(app);
+    document.body.innerHTML = ""
     document.body.append(userMenu)
   }
 }
