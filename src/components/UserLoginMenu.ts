@@ -71,7 +71,8 @@ class UserLoginMenu {
     const userElementClasses = [
       "py-2", "px-1", "text-white", "font-bold",
       "hover:text-white", "hover:bg-violet-semi-light",
-      "leading-none", "cursor-pointer", "border-t", "border-b", "border-white/10"
+      "leading-none", "cursor-pointer", "border-t", "border-b", "border-white/10",
+      "transition-colors"
     ]
 
     const users = app.getUsers();
