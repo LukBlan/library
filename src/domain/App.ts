@@ -1,5 +1,5 @@
 
-import { LoginScreen } from "../UI/LoginScreen";
+import { LoginScreen } from "../ui/LoginScreen";
 import {LocalStorage} from "../services/LocalStorage";
 
 class App {

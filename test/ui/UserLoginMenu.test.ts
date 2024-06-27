@@ -1,6 +1,6 @@
 import {test, expect, describe, beforeAll, beforeEach} from "vitest";
 import { UserLoginMenu } from "../../src/components/UserLoginMenu";
-import { LoginScreen } from "../../src/UI/LoginScreen";
+import { LoginScreen } from "../../src/ui/LoginScreen";
 import {fireEvent, getByPlaceholderText, getByRole, getByText, queryByRole, screen} from "@testing-library/dom";
 import {App} from "../../src/domain/App";
 import {LocalStorage} from "../../src/services/LocalStorage";
