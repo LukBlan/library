@@ -4,7 +4,7 @@ import {App} from "../domain/App";
 
 class UserLoginMenu {
   createUserSection(): HTMLElement {
-    const tailwindClassList = [
+    const tailwindClassList: string[] = [
       "grid", "justify-center", "content-center",
       "bg-violet-light", "dark:bg-black"
     ];
@@ -13,11 +13,12 @@ class UserLoginMenu {
     return userSection;
   }
 
-  newUserForm(app: App): HTMLFormElement {
+  addUserForm(input: HTMLInputElement, app: App) {
+    const formCssClasses: string[] = ["relative"]
     const userForm: HTMLFormElement = document.createElement("form");
-    const label: HTMLLabelElement = document.createElement("label");
-    const input: HTMLInputElement = document.createElement("input")
-    const button: HTMLButtonElement = document.createElement("button");
+
+    userForm.name = "form";
+    applyCssClasses(userForm, formCssClasses);
 
     userForm.addEventListener("submit", (event) => {
       event.preventDefault();
@@ -25,22 +26,41 @@ class UserLoginMenu {
       app.createUser(newUserName);
     })
 
+    return userForm;
+  }
+
+  addUserButton() {
+    const buttonCssClasses: string[] = ["absolute", "right-0", "px-1.5"]
+    const button: HTMLButtonElement = document.createElement("button");
+    applyCssClasses(button, buttonCssClasses);
+    button.textContent = "+";
+    return button;
+  }
+
+  newUserForm(app: App): HTMLFormElement {
+    const input: HTMLInputElement = document.createElement("input")
+    const label: HTMLLabelElement = document.createElement("label");
+    const userForm: HTMLFormElement = this.addUserForm(input, app)
+    const addUserButton: HTMLButtonElement = this.addUserButton();
+
     label.htmlFor = "newUser"
     input.name = "newUser"
+    input.classList.add("text-center")
     input.id = "newUser"
     input.placeholder = "Create new User"
-    userForm.name = "form";
-    button.textContent = "+";
 
     userForm.append(label);
     userForm.append(input);
-    userForm.append(button);
+    userForm.append(addUserButton);
 
     return userForm;
   }
 
   createUserMenuContainer(): HTMLElement {
-    const userMenuClasses = ["shadow", "p-2", "bg-violet", "rounded"]
+    const userMenuClasses = [
+      "flex", "flex-col", "gap-2", "shadow",
+      "p-2", "bg-violet", "rounded", "max-h-[50vh]", "overflow-y-scroll"
+    ]
     const userMenuContainer: HTMLElement = document.createElement("section");
     applyCssClasses(userMenuContainer, userMenuClasses)
     return userMenuContainer
@@ -51,8 +71,9 @@ class UserLoginMenu {
     const userElementClasses = [
       "py-2", "px-1", "text-white", "font-bold",
       "hover:text-white", "hover:bg-violet-semi-light",
-      "leading-none", "cursor-pointer"
+      "leading-none", "cursor-pointer", "border-t", "border-b", "border-white/10"
     ]
+
     const users = app.getUsers();
 
     users.forEach(user => {
@@ -61,6 +82,7 @@ class UserLoginMenu {
       applyCssClasses(userLiElement, userElementClasses)
       usersListElement.append(userLiElement);
     })
+
 
     return usersListElement;
   }
