@@ -1,7 +1,11 @@
 class LocalStorage {
-  constructor(private localStorage: Storage) {}
+  constructor(
+    private localStorage: Storage,
+    private usersValidation: ((userName: string) => boolean)[]
+  ) {}
 
   createUser(userName: string): void {
+    this.usersValidation.forEach(validation => validation(userName))
     const users = this.getUsers()
     const newUsers = [...users, userName]
     this.setUsers(newUsers);

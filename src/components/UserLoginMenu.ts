@@ -37,7 +37,14 @@ class UserLoginMenu {
     return button;
   }
 
-  newUserForm(app: App): HTMLFormElement {
+  createErrorMessage(message: string) {
+    const span: HTMLSpanElement = document.createElement("span");
+    span.textContent = message;
+    return span
+  }
+
+  newUserForm(app: App, errorMessage: string): HTMLFormElement {
+    const errorMessageBox: HTMLSpanElement = this.createErrorMessage(errorMessage)
     const input: HTMLInputElement = document.createElement("input")
     const label: HTMLLabelElement = document.createElement("label");
     const userForm: HTMLFormElement = this.addUserForm(input, app)
@@ -52,6 +59,7 @@ class UserLoginMenu {
     userForm.append(label);
     userForm.append(input);
     userForm.append(addUserButton);
+    userForm.append(errorMessageBox);
 
     return userForm;
   }
@@ -88,10 +96,10 @@ class UserLoginMenu {
     return usersListElement;
   }
 
-  create(app: App): HTMLElement {
+  create(app: App, errorMessage: string): HTMLElement {
     const userSection: HTMLElement = this.createUserSection();
     const userMenuContainer: HTMLElement = this.createUserMenuContainer();
-    const newUserForm: HTMLFormElement = this.newUserForm(app);
+    const newUserForm: HTMLFormElement = this.newUserForm(app, errorMessage);
     const usersList: HTMLUListElement = this.createUsersList(app);
 
     userSection.append(userMenuContainer);

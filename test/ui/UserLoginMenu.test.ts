@@ -4,11 +4,13 @@ import { LoginScreen } from "../../src/ui/LoginScreen";
 import {fireEvent, getByPlaceholderText, getByRole, getByText, queryByRole, screen} from "@testing-library/dom";
 import {App} from "../../src/domain/App";
 import {LocalStorage} from "../../src/services/LocalStorage";
+import {notEmptyUsers} from "../../src/validations/not-empty-users";
 
 describe("UserLoginMenu", () => {
   const userLoginMenu: UserLoginMenu = new UserLoginMenu();
   const loginScreen: LoginScreen = new LoginScreen(userLoginMenu);
-  const appLocalStorage: LocalStorage = new LocalStorage(localStorage);
+  const localStorageValidations: ((username: string) => boolean)[] = [notEmptyUsers]
+  const appLocalStorage: LocalStorage = new LocalStorage(localStorage, localStorageValidations);
   const app: App = new App(loginScreen, appLocalStorage);
 
   beforeAll(() => {
@@ -31,5 +33,11 @@ describe("UserLoginMenu", () => {
     fireEvent.change(newUserInput, {target: "Lucas"})
     fireEvent.click(sendButton);
     expect(screen.getByRole("list")).not.toBe(null);
+  })
+
+  test("should display a message error when creating empty user", () => {
+    const form = screen.getByRole("form");
+    fireEvent.change(form, {target: ""})
+    expect(screen.getByText("Users name need to have 1 character or more")).not.toBe(null);
   })
 })

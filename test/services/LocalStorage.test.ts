@@ -1,12 +1,13 @@
 import { beforeEach, describe, expect, it } from "vitest"
 import {LocalStorage} from "../../src/services/LocalStorage";
+import {notEmptyUsers} from "../../src/validations/not-empty-users";
 
 describe("LocalStorage", () => {
   beforeEach(() => {
     appLocalStorage.clear()
   })
 
-  const appLocalStorage = new LocalStorage(localStorage);
+  const appLocalStorage: LocalStorage = new LocalStorage(localStorage, [notEmptyUsers]);
 
   describe("createUser", () => {
     it("should add a new user" , () => {
@@ -16,6 +17,10 @@ describe("LocalStorage", () => {
 
     it("should create multipleUsers", () => {
 
+    })
+
+    it("should not create an empty user", () => {
+      expect(() => {appLocalStorage.createUser("")}).toThrowError();
     })
 
     it("should not create a new user when it already exist", () => {

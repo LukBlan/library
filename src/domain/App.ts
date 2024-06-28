@@ -16,8 +16,25 @@ class App {
     return this.localStorage.getUsers();
   }
 
+  setMessageError(message: string) {
+    this.loginScreen.setErrorMessage(message);
+  }
+
   createUser(newUserName: string): void {
-    this.localStorage.createUser(newUserName);
+    try {
+      this.localStorage.createUser(newUserName);
+    } catch (error) {
+      let message: string;
+
+      if (error instanceof Error) {
+        message = error.message
+      } else {
+        message = String(Error)
+      }
+
+      this.setMessageError(message)
+    }
+
     this.appChange()
   }
 }
