@@ -2,9 +2,8 @@
 Responsive Library page where you can add and delete books
 
 ## Features
-- User Creation / Deletion  
-- User inputs Validation
-- Css Animations
+- Create, Delete, Edit and Load users
+- User Input Validations
 - Dark Mode
 
 ## Languages
