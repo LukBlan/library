@@ -40,6 +40,6 @@ describe("UserLoginMenu", () => {
   test("should display a message error when creating empty user", () => {
     const form = screen.getByRole("form");
     fireEvent.change(form, {target: ""})
-    expect(screen.getByText("Users name need to have 1 character or more")).not.toBe(null);
+    expect(screen.getByText("Users name can't be empty")).not.toBe(null);
   })
 })

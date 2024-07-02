@@ -15,6 +15,7 @@ export default {
       "violet-light": "#e6ecfa",
       "night": "#131116",
       "black": "#0D0C0F",
+      "red": "red",
     },
     extend: {},
   },

@@ -1,14 +1,13 @@
 import { App } from "../App";
 import { UiController } from "../../ui/UiController";
 import { applyCssClasses } from "../../services/applyCssClasses";
-import "./Login.css"
 import {NewUserForm} from "../../components/NewUserForm";
 import {UserList} from "../../components/UserList";
 
 function Login(app: App, uiController: UiController): HTMLElement {
   const loginPageClasses: string[] = ["grid", "justify-center", "content-center", "bg-violet-light", "dark:bg-black"];
   const userMenuContainerClasses = [
-    "flex", "flex-col", "gap-2", "shadow",
+    "flex", "flex-col", "gap-4", "shadow",
     "p-2", "bg-violet", "rounded", "max-h-[50vh]", "overflow-y-scroll"
   ]
 
