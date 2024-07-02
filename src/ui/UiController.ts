@@ -16,6 +16,10 @@ class UiController {
     document.body.append(page);
   }
 
+  setErrorMessage(message: string): void {
+    this.currentErrorMessage = message;
+  }
+
   getErrorMessage(): string {
     return this.currentErrorMessage;
   }

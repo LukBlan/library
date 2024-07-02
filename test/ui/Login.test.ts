@@ -1,20 +1,22 @@
 import {test, expect, describe, beforeAll, beforeEach} from "vitest";
-import { UserLoginMenu } from "../../src/components/UserLoginMenu";
-import { LoginScreen } from "../../src/ui/LoginScreen";
-import {fireEvent, getByPlaceholderText, getByRole, getByText, queryByRole, screen} from "@testing-library/dom";
-import {App} from "../../src/domain/App";
+import {fireEvent, getByPlaceholderText, getByText, screen} from "@testing-library/dom";
+import {App} from "../../src/pages/App";
 import {LocalStorage} from "../../src/services/LocalStorage";
 import {notEmptyUsers} from "../../src/validations/not-empty-users";
+import {UiController} from "../../src/ui/UiController";
+import {Component} from "../../src/services/types";
+import {Login} from "../../src/pages/login/Login";
 
 describe("UserLoginMenu", () => {
-  const userLoginMenu: UserLoginMenu = new UserLoginMenu();
-  const loginScreen: LoginScreen = new LoginScreen(userLoginMenu);
+  const componentsMap = new Map<string, Component>();
+  componentsMap.set("login", Login)
+  const uiController: UiController = new UiController(componentsMap);
   const localStorageValidations: ((username: string) => boolean)[] = [notEmptyUsers]
   const appLocalStorage: LocalStorage = new LocalStorage(localStorage, localStorageValidations);
-  const app: App = new App(loginScreen, appLocalStorage);
+  const app: App = new App(uiController, appLocalStorage);
 
   beforeAll(() => {
-    loginScreen.render(app)
+    uiController.render(app)
   })
 
   beforeEach(() => {
@@ -27,7 +29,7 @@ describe("UserLoginMenu", () => {
 
   test("should display a new user when it is create in the form", () => {
     const form = screen.getByRole("form");
-    const newUserInput = getByPlaceholderText(form, "Create new User");
+    const newUserInput = getByPlaceholderText(form, "Create New User");
     const sendButton = getByText(form, "+")
 
     fireEvent.change(newUserInput, {target: "Lucas"})
