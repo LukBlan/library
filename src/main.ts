@@ -8,6 +8,7 @@ import {Component} from "./services/types";
 const localStorageValidations: ((username: string) => boolean)[] = [notEmptyUsers]
 const appLocalStorage: LocalStorage = new LocalStorage(localStorage, localStorageValidations)
 
+// @ts-expect-error - Webstorm missing map bug
 const componentsMap = new Map<string, Component>();
 componentsMap.set("login", Login)
 

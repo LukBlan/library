@@ -5,6 +5,7 @@ class UiController {
   private currentPageComponent: Component;
   private currentErrorMessage: string;
 
+  // @ts-expect-error - Webstorm missing map bug
   constructor(private componentMap: Map<string, Component>) {
     this.currentPageComponent = this.componentMap.get("login")!;
     this.currentErrorMessage = "";

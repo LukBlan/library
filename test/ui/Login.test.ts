@@ -8,6 +8,7 @@ import {Component} from "../../src/services/types";
 import {Login} from "../../src/pages/login/Login";
 
 describe("UserLoginMenu", () => {
+  // @ts-expect-error - Webstorm missing map bug
   const componentsMap = new Map<string, Component>();
   componentsMap.set("login", Login)
   const uiController: UiController = new UiController(componentsMap);
